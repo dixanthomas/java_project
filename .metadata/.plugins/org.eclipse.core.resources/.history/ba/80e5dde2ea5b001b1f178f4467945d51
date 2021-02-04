@@ -1,0 +1,82 @@
+class Q
+{ 
+	Thread t;
+	int n;
+	boolean flag = false;
+	 void get()
+	{
+		while(flag==false)
+		try
+		{
+			wait();
+			t.sleep(1000);
+		}
+		catch (InterruptedException e ){}
+		System.out.println("Consumed:  " +n);
+		flag=false;
+//		notify();
+//		return n;
+	}
+	 void put(int n)
+	{
+		while(flag==true)
+		try
+		{
+			wait();
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e )
+		{}
+		this.n=n;  
+		flag=true;
+		System.out.println("Produced:  " +n);
+		notify();
+	}
+}
+
+class producer extends Thread
+{
+	Q q ;
+	producer ( Q q) 
+	{
+		this.q=q; 
+	}
+	public void run()
+	{	
+		for(int i=1;i<=3;i++)
+		{
+			q.put(i);
+		}
+	}
+}
+
+class consumer  extends Thread
+{
+	Q q ;
+	consumer ( Q q) 
+	{ 
+		this.q=q;
+	}
+	public void run()
+	{
+		for(int i=1;i<=3;i++)
+		{
+			q.get();
+		}
+	}
+}
+
+public class pgm41 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("\nMCA318\n");
+		Q q = new Q();
+		producer p = new producer(q); 
+		p.start();
+		consumer c = new consumer(q); 
+		c.start();
+
+	}
+
+}

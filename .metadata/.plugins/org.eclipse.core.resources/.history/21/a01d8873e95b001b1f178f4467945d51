@@ -1,0 +1,44 @@
+class first  {
+	public void display(String msg)	{
+		System.out.print(" [ " +msg);
+		try		{
+			Thread.sleep(1000);
+		}
+		catch(InterruptedException e){
+			System.out.println(e);
+		}
+		System.out.println(" ] ");
+	}
+}
+
+class second extends Thread  {
+	first fobj;
+	String msg;
+	second(first f1, String str)	{
+		fobj=f1;
+		msg=str;
+	}
+	public void run()	{
+		synchronized(this)   {
+			fobj.display(msg);  //synchronized statement
+		}
+	}
+}
+
+public class pgm40 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("\nMCA318\n");
+		
+		first f = new first();
+		second s1 = new second(f, " DIXAN");   //object
+		second s2 = new second(f, "LAL");
+		second s3 = new second(f, "THOMAS");
+		
+		s1.start();
+		s2.start();
+		s3.start();
+
+	}
+
+}

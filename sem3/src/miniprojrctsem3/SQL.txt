@@ -1,0 +1,65 @@
+Create table carlogin 
+(id varchar(15) NOT NULL primary key,
+ pswd varchar(15));
+
+
+
+create table cardetails
+(noplate varchar(10) not null primary key,
+brand varchar(25),
+modelno varchar(20),
+type varchar(25),
+rentamt varchar(5),
+fueltype varchar(15),
+milage varchar(2));
+
+insert into cardetails values(?,?,?,?,?,?,?);
+
+AUTO_INCREMENT 
+
+create table bookedcardetails(
+cid int primary key,
+custname varchar(25),
+custlicenceno varchar(20),
+carnoplate varchar(25),
+bookdate date,
+returndate date,
+mobno number(10));
+
+cid,custname,custlicenceno,carnoplate,bookdate,mobno 
+ALTER TABLE bookedcardetails DROP FOREIGN KEY carnoplate; 
+
+add mob no.
+
+drop table carlogin;
+drop table cardetails;
+drop table bookedcardetails;
+
+select * from carlogin;
+select * from cardetails;
+select * from bookedcardetails;
+
+insert into carlogin values('dixan','dixan');
+
+
+
+
+btnaddcar
+btnremovecar
+btnavailcar
+btnupdate
+btnbookdcars
+
+
+btnadd
+txtnoplate
+txtbrand
+txtmodel
+txtrent
+cmboxfuel
+txtmilege
+cmboxtype
+
+
+
+
